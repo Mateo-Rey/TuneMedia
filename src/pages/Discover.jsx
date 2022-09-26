@@ -4,7 +4,12 @@ import { useState } from "react";
 import { useGetTopChartsQuery } from "../redux/services/shazamCore";
 
 const Discover = () => {
+    const { data, isFetching, error } = useGetTopChartsQuery()
     const genreTitle = 'Pop'
+
+    if(isFetching) {
+        return <Loader title='Loading songs...'/>
+    }
 
     return (
         <>
@@ -28,7 +33,7 @@ const Discover = () => {
                 </select>
             </div>
                     <div className="flex flex-wrap sm:justify-start justify-center gap-8">
-                    {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((song, i) => {
+                    {data?.map((song, i) => {
                         return (
                         <SongCard
                         key={song.key}
