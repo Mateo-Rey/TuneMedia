@@ -1,10 +1,10 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { DetailsHeader, Error, Loader } from '../components';
+import { DetailsHeader, Error, Loader, RelatedSongs } from '../components';
 
 import { setActiveSong, playPause } from '../redux/features/playerSlice';
-import { useGetSongDetailsQuery } from '../redux/services/shazamCore';
+import { useGetSongDetailsQuery, useGetSongRelatedQuery } from '../redux/services/shazamCore';
 
 const SongDetails = () => {
   const dispatch = useDispatch();
@@ -17,6 +17,11 @@ const SongDetails = () => {
 
   console.log(songData);
 
+  const { data, isFetching: isFetchingRelatedSongs, error } = useGetSongRelatedQuery({ songid })
+
+
+  if(isFetchingSongDetails || isFetchingRelatedSongs) return <Loader title="Searching song details"/>
+  if(error) return <Error/>
   
 
   const handlePauseClick = () => {
@@ -50,7 +55,7 @@ const SongDetails = () => {
       </div>
 
       
-
+        <RelatedSongs data={data} isPlaying={isPlaying} handlePlayClick={handlePlayClick} handlePauseClick={handlePauseClick} activeSong={activeSong} artistId={artistId}  /> 
     </div>
   );
 };
