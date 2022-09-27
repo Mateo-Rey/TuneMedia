@@ -6,7 +6,7 @@ const RelatedSongs = ({
   handlePlayClick,
   activeSong,
   isPlaying,
-  artistId
+  artistId  
 }) => {
   return (
     <div className="flex flex-col">
