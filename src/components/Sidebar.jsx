@@ -4,6 +4,8 @@ import { HiOutlineHashtag, HiOutlineHome, HiOutlineMenu, HiOutlinePhotograph, Hi
 import { RiCloseLine } from 'react-icons/ri';
 
 import logo from '../assets/SiteLogo.jpeg';
+import Searchbar from './Searchbar';
+import { Search } from '../pages';
 
 const links = [
   { name: 'Discover', to: '/', icon: HiOutlineHome },
@@ -37,6 +39,7 @@ const Sidebar = () => {
         <div className='rounded-lg'><img src={logo} alt="logo" className=" relative left-6 h-36 rounded-lg overflow-hidden object-contain" /></div>
         
         <NavLinks />
+        
       </div>
 
       {/* Mobile sidebar */}
@@ -50,6 +53,7 @@ const Sidebar = () => {
 
       <div className={`absolute top-0 h-screen w-2/3 bg-gradient-to-tl from-white/10 to-[#483D8B] backdrop-blur-lg z-10 p-6 md:hidden smooth-transition ${mobileMenuOpen ? 'left-0' : '-left-full'}`}>
         <img src={logo} alt="logo" className="rounded-lg overflow-hidden h-28 object-contain" />
+        <div className='md:hidden relative right-5 top-5'><Searchbar/></div>
         <NavLinks handleClick={() => setMobileMenuOpen(false)} />
       </div>
     </>
