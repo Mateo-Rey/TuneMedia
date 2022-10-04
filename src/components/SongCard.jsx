@@ -21,8 +21,10 @@ const SongCard = ({ song, isPlaying, activeSong, data, i }) => {
   };
 
   return (
-    <div className="flex flex-col w-[250px] justify-between p-4 bg-white/5 bg-opacity-80 backdrop-blur-sm animate-slideup rounded-lg cursor-pointer">
-      <div className="relative w-full h-56 justify-between group">
+    <div className="flex flex-col w-[250px] p-4 bg-white/5 bg-opacity-80 backdrop-blur-sm animate-slideup rounded-lg cursor-pointer">
+      <HiDotsVertical className='text-white relative bottom-2 left-[200px]'/>
+      <div className="relative w-full h-56 group">
+      
         <div className={`absolute inset-0 justify-around items-center bg-black bg-opacity-50 group-hover:flex ${activeSong?.title === song.title ? 'flex bg-black bg-opacity-70' : 'hidden'}`}>
           <PlayPause
             isPlaying={isPlaying}
@@ -32,13 +34,14 @@ const SongCard = ({ song, isPlaying, activeSong, data, i }) => {
             handlePlay={handlePlayClick}
           />
         </div>
-        <button onClick={handleShow}>
-        <HiDotsVertical className='text-white relative bottom-2 left-[200px]'/>
-        </button>
         <img alt="song_img" src={song.images?.coverart} className="w-full h-full rounded-lg" />
+        <button onClick={handleShow}>
+        
+        </button>
+        
       </div>
 
-      <div className="mt-8 flex flex-col">
+      <div className="mt-4 flex flex-col">
         <p className="font-semibold text-lg text-white truncate">
           <Link to={`/songs/${song?.key}`}>
             {song.title}
